@@ -5,25 +5,14 @@ workflows:
     environment:
       vars:
         NODE_ENV: production
-      flutter: false
-      xcode: latest
-      cocoapods: default
       java: openjdk11
-      android:
-        build_tools_version: "33.0.0"
-        compile_sdk_version: 33
-        target_sdk_version: 33
     scripts:
       - name: Install dependencies
         script: |
           npm install
-      - name: Run Android build
+      - name: Build APK
         script: |
           cd android
           ./gradlew assembleRelease
     artifacts:
       - android/app/build/outputs/apk/release/app-release.apk
-    publishing:
-      email:
-        recipients:
-          - cetintuhfe@gmail.com
